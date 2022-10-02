@@ -1,10 +1,11 @@
 const style = `
-.tooltip { width:16px;
-           height:16px;
-           border-radius:10px;
-           border:2px solid #fff;
-           position:absolute;
-           background:rgba(255,255,255,.5);
+.tooltip { width: 16px;
+           height: 16px;
+           border-radius: 10px;
+           border: 2px solid #000;
+           background: rgba(0, 0, 0, .5);
+	   display: inline;
+	   margin: -8px;
 }
 `
 
@@ -30,11 +31,13 @@ const overlay = (data, css) => {
     {
       const doc = jsyaml.load(text)
       console.log(doc)
-      //for (let tip in doc) {
-      //  let el = document.querySelector(tip.sel) {
-      //    
-      //  }
-      //}
+      for (let tip of doc) {
+        let el = document.querySelector(tip.sel)
+        let div = document.createElement('div')
+        div.appendChild(document.createTextNode(tip.txt))
+        div.classList.add("tooltip")
+        el.parentNode.insertBefore(div, el.nextSibling)
+      }
     })
   })
 }
